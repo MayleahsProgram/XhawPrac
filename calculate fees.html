@@ -9,47 +9,56 @@
 
 <header>
   <p>LOGO</p>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="calculate-fees.html">Calculate Fees</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="courses.html">Courses</a>
-  </nav>
-  <a href="#">Book Now</a>
+  <ul id="topLinks">
+       <a href="./index.html#home"><li>Home</li></a>
+        <a href="./about.html#about"><li>About Us</li></a>
+         <a href="./courses.html#courses"><li>Courses</li></a>
+         <a href="./details.html#course-details"><li>Course Details</li></a>
+         <a href="./calculate fees.html#calculate-fees"><li>Calculate Fees</li></a>
+         <a href="./contact.html#contact"><li>Contact Us</li></a>
+    </ul>
+    
+  <a href="courses.html">Book Your Courses Now</a>
 </header>
 
-<section>
-  <h1>Calculate Fees</h1>
-  <p>Get an instant quote for your courses</p>
-</section>
+<main>
+  <section id="calculate-fees">
+    <h1>Calculate Fees</h1>
+    <p>Get an instant quote for your courses. Choose the options you want and the total will update as you make selections.</p>
+  </section>
 
-<section>
-  <form>
-    <label for="name">Name &amp; Surname</label>
-    <input type="text" id="name" placeholder="Enter your name">
+  <section>
+    <form>
+      <label for="name">Name &amp; Surname</label>
+      <input id="name" type="text" placeholder="Enter your name">
 
-    <label for="phone">Phone Number</label>
-    <input type="tel" id="phone" placeholder="Enter your phone number">
+      <label for="phone">Phone Number</label>
+      <input id="phone" type="tel" placeholder="Enter your phone number">
 
-    <label for="email">Email</label>
-    <input type="email" id="email" placeholder="Enter your email">
+      <label for="email">Email</label>
+      <input id="email" type="email" placeholder="Enter your email">
 
-    <p>Total: R______</p>
+      <p>Total: R0</p>
 
-    <ul>
-      <li><span>Canine Obedience Training</span> <span>R1500</span> <input type="checkbox"></li>
-      <li><span>Pet Grooming</span> <span>R1500</span> <input type="checkbox"></li>
-      <li><span>Animal Behaviour</span> <span>R1500</span> <input type="checkbox"></li>
-      <li><span>Pet Business Management</span> <span>R1500</span> <input type="checkbox"></li>
-      <li><span>Puppy Care</span> <span>R750</span> <input type="checkbox"></li>
-      <li><span>Pet First Aid</span> <span>R750</span> <input type="checkbox"></li>
-      <li><span>Basic Dog Walking</span> <span>R750</span> <input type="checkbox"></li>
-    </ul>
+      <ul>
+        <li><span>Canine Obedience Training</span> <span>R1500</span> <input type="checkbox"></li>
+        <li><span>Pet Grooming</span> <span>R1500</span> <input type="checkbox"></li>
+        <li><span>Animal Behaviour</span> <span>R1500</span> <input type="checkbox"></li>
+        <li><span>Pet Business Management</span> <span>R1500</span> <input type="checkbox"></li>
+        <li><span>Puppy Care</span> <span>R750</span> <input type="checkbox"></li>
+        <li><span>Pet First Aid</span> <span>R750</span> <input type="checkbox"></li>
+        <li><span>Basic Dog Walking</span> <span>R750</span> <input type="checkbox"></li>
+      </ul>
 
-    <button type="submit">Calculate</button>
-  </form>
-</section>
+      <button type="submit">Calculate</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Need help choosing?</h2>
+    <p>If you are not sure which course to choose, our team can help you decide based on your interests, your pet's needs, or your career goals. You can also speak to us directly before you book.</p>
+  </section>
+</main>
 
 <footer>
   <p>© 2026 Pawsitive Pet Academy. All rights reserved.</p>
