@@ -1,14 +1,11 @@
-```html
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Calculate Fees - Pawsitive Pet Academy</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Booking - Pawsitive Pet Academy</title>
 
 </head>
 
@@ -31,6 +28,7 @@
                                 src="./images/xhaw logo.jpeg"
                                 alt="Pawsitive Pet Academy Logo"
                                 height="40"
+                                style="width:auto; max-width:100%;"
                             >
                         </td>
 
@@ -50,6 +48,7 @@
                 <a href="./index.html">Home</a> |
                 <a href="./about.html">About Us</a> |
                 <a href="./courses.html">Courses</a> |
+                <a href="./details.html#course-details">Course Details</a> |
                 <a href="./contact.html">Contact Us</a>
 
             </td>
@@ -71,17 +70,16 @@
     <hr>
 
 
-    <!-- Fee calculator introduction -->
+    <!-- Course booking introduction -->
 
     <main>
 
         <section id="calculate-fees">
 
-            <h1>Calculate Your Course Fees</h1>
+            <h1>Book Your Course</h1>
 
             <p>
-                Choose the course you are interested in below
-                to view the course price and complete your booking.
+                Choose one or more courses below and complete your booking details.
             </p>
 
         </section>
@@ -91,26 +89,25 @@
 
         <section>
 
-            <h2>Choose Your Course</h2>
+            <h2>Choose Your Courses</h2>
 
             <p>
-                Select one of the courses below.
+                Select one or more courses below.
             </p>
 
 
-            <form action="#" method="get">
+            <form id="fees-form" action="#" method="get">
 
 
                 <label>
 
                     <input
-                        type="radio"
-                        name="course"
+                        type="checkbox"
+                        name="course[]"
                         value="Canine Obedience"
-                        required
                     >
 
-                    Canine Obedience - R1500
+                    Canine Obedience
 
                 </label>
 
@@ -121,12 +118,12 @@
                 <label>
 
                     <input
-                        type="radio"
-                        name="course"
+                        type="checkbox"
+                        name="course[]"
                         value="Pet Grooming"
                     >
 
-                    Pet Grooming - R1500
+                    Pet Grooming
 
                 </label>
 
@@ -137,12 +134,12 @@
                 <label>
 
                     <input
-                        type="radio"
-                        name="course"
+                        type="checkbox"
+                        name="course[]"
                         value="Animal Behaviour"
                     >
 
-                    Animal Behaviour - R1500
+                    Animal Behaviour
 
                 </label>
 
@@ -153,12 +150,12 @@
                 <label>
 
                     <input
-                        type="radio"
-                        name="course"
+                        type="checkbox"
+                        name="course[]"
                         value="Pet Business Management"
                     >
 
-                    Pet Business Management - R1500
+                    Pet Business Management
 
                 </label>
 
@@ -169,12 +166,12 @@
                 <label>
 
                     <input
-                        type="radio"
-                        name="course"
+                        type="checkbox"
+                        name="course[]"
                         value="Puppy Care"
                     >
 
-                    Puppy Care - R750
+                    Puppy Care
 
                 </label>
 
@@ -185,12 +182,12 @@
                 <label>
 
                     <input
-                        type="radio"
-                        name="course"
+                        type="checkbox"
+                        name="course[]"
                         value="Pet First Aid"
                     >
 
-                    Pet First Aid - R750
+                    Pet First Aid
 
                 </label>
 
@@ -201,12 +198,12 @@
                 <label>
 
                     <input
-                        type="radio"
-                        name="course"
+                        type="checkbox"
+                        name="course[]"
                         value="Basic Dog Walking"
                     >
 
-                    Basic Dog Walking - R750
+                    Basic Dog Walking
 
                 </label>
 
@@ -215,7 +212,6 @@
                 <br>
 
                 <hr>
-
 
                 <!-- Booking information -->
 
@@ -313,9 +309,11 @@
 
                 <!-- Submit -->
 
-                <button type="submit">
+                <button type="submit" id="submit-booking">
                     Submit Booking
                 </button>
+
+                <div id="submitted-details"></div>
 
             </form>
 
@@ -435,7 +433,7 @@
                     <br>
                     <br>
 
-                    <a href="./canine-obedience.html">
+                    <a href="./details.html">
                         Canine Obedience Training
                     </a>
 
@@ -542,6 +540,51 @@
 
    </table>
 </footer>
+
+<!-- Course selection and booking confirmation -->
+<script>
+    const bookingForm = document.getElementById("fees-form");
+    const selectedDetails = document.getElementById("submitted-details");
+
+    bookingForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const selectedCourses = Array.from(
+            bookingForm.querySelectorAll('input[name="course[]"]:checked')
+        ).map(function (course) {
+            return course.value;
+        });
+
+        const name = document.getElementById("name").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const date = document.getElementById("date").value;
+        const message = document.getElementById("message").value.trim();
+
+        if (selectedCourses.length === 0) {
+            alert("Please select at least one course.");
+            return;
+        }
+
+        const details = "Name: " + name + "\n" +
+            "Phone: " + phone + "\n" +
+            "Email: " + email + "\n" +
+            "Courses: " + selectedCourses.join(", ") + "\n" +
+            "Preferred Date: " + date + "\n" +
+            "Additional Information: " + (message || "None") + "\n\n" +
+            "Do you want to submit this booking?";
+
+        if (!window.confirm(details)) {
+            selectedDetails.textContent = "Submission cancelled. No details were sent.";
+            return;
+        }
+
+        selectedDetails.textContent = "Submitted Booking Details\n\n" + details.replace(
+            "\n\nDo you want to submit this booking?",
+            ""
+        );
+    });
+</script>
 
 </body>
 </html>
