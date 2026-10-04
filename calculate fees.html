@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./styles.css">
 <title>Course Booking - Pawsitive Pet Academy</title>
 
 </head>
@@ -313,8 +314,6 @@
                     Submit Booking
                 </button>
 
-                <div id="submitted-details"></div>
-
             </form>
 
         </section>
@@ -541,51 +540,5 @@
    </table>
 </footer>
 
-<!-- Course selection and booking confirmation -->
-<script>
-    const bookingForm = document.getElementById("fees-form");
-    const selectedDetails = document.getElementById("submitted-details");
-
-    bookingForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const selectedCourses = Array.from(
-            bookingForm.querySelectorAll('input[name="course[]"]:checked')
-        ).map(function (course) {
-            return course.value;
-        });
-
-        const name = document.getElementById("name").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const date = document.getElementById("date").value;
-        const message = document.getElementById("message").value.trim();
-
-        if (selectedCourses.length === 0) {
-            alert("Please select at least one course.");
-            return;
-        }
-
-        const details = "Name: " + name + "\n" +
-            "Phone: " + phone + "\n" +
-            "Email: " + email + "\n" +
-            "Courses: " + selectedCourses.join(", ") + "\n" +
-            "Preferred Date: " + date + "\n" +
-            "Additional Information: " + (message || "None") + "\n\n" +
-            "Do you want to submit this booking?";
-
-        if (!window.confirm(details)) {
-            selectedDetails.textContent = "Submission cancelled. No details were sent.";
-            return;
-        }
-
-        selectedDetails.textContent = "Submitted Booking Details\n\n" + details.replace(
-            "\n\nDo you want to submit this booking?",
-            ""
-        );
-    });
-</script>
-
 </body>
 </html>
-
